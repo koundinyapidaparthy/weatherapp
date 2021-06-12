@@ -1,0 +1,322 @@
+.Loading {
+  width: 100%;
+  height: 100vh;
+  background-color: #0f1018;
+  color: white;
+  font-size: 30px;
+  font-family: 'Lobster', cursive;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Loading span {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 40px;
+}
+
+.Loading span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #0f1018;
+  -webkit-animation: goo 2s steps(5) infinite;
+          animation: goo 2s steps(5) infinite;
+}
+
+@-webkit-keyframes goo {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes goo {
+  to {
+    left: 100%;
+  }
+}
+
+.Default {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #0f1018;
+  font-family: 'Bangers', cursive;
+  color: white;
+}
+
+.Main {
+  width: 100%;
+  height: 100vh;
+}
+
+.travel1 {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.travel1::before, .travel1::after {
+  content: "";
+  width: 50%;
+  height: 100vh;
+  background-color: white;
+  opacity: 0.5;
+  position: absolute;
+}
+
+.travel1::before {
+  left: 0;
+  -webkit-animation: tv2 2s ease-in-out  forwards;
+          animation: tv2 2s ease-in-out  forwards;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.travel1::after {
+  right: 0;
+  -webkit-animation: tv3 2s ease-in-out  forwards;
+          animation: tv3 2s ease-in-out  forwards;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+@-webkit-keyframes tv2 {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes tv2 {
+  to {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes tv3 {
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes tv3 {
+  to {
+    right: 100%;
+  }
+}
+
+.Fetched__Main {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Fetched__Main video {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.Hot {
+  bottom: 0;
+  right: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  .Hot {
+    right: -200px;
+    bottom: -200px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .Hot {
+    right: -200px;
+    bottom: -200px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Hot {
+    right: -200px;
+    bottom: -200px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .Hot {
+    right: -300px;
+    bottom: -400px;
+  }
+}
+
+.Bw {
+  right: 0;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  .Bw {
+    left: 0px;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .Bw {
+    left: -100px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Bw {
+    left: -400px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .Bw {
+    left: -500px;
+  }
+}
+
+.Cloud {
+  right: 0;
+  bottom: 0;
+}
+
+.Rain {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Fetched__Content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  min-height: 35vh;
+  position: absolute;
+  top: 65%;
+  visibility: hidden;
+  -webkit-animation: bounes 2s linear forwards;
+          animation: bounes 2s linear forwards;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
+.Fetched__Content .IF__Content {
+  width: 99%;
+  min-height: 30vh;
+  color: white;
+  overflow: hidden;
+}
+
+@-webkit-keyframes bounes {
+  0% {
+    top: 150%;
+  }
+  50% {
+    top: 45%;
+  }
+  100% {
+    top: 65%;
+    visibility: visible;
+  }
+}
+
+@keyframes bounes {
+  0% {
+    top: 150%;
+  }
+  50% {
+    top: 45%;
+  }
+  100% {
+    top: 65%;
+    visibility: visible;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.Current__Temp {
+  font-size: 40px;
+  font-weight: bold;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 10px 10px 10px;
+}
+
+.High__Low {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding-left: 20px;
+}
+
+.High__Low span {
+  font-weight: bold;
+  font-size: 25px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+/*# sourceMappingURL=HomeWeather.css.map */

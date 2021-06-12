@@ -1,0 +1,34 @@
+.Hourly__Main{
+    width:100%;
+    height:20vh;
+    display:flex;
+    flex-direction: row;
+    margin-left: 10px;
+    overflow-x: scroll;
+    margin-top: 10px;
+}
+.Hourly__Main::-webkit-scrollbar{
+    display:none;
+}
+.Inner__Hourly{
+    height:6vh;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    /* border: 1px solid white; */
+    border-radius:5px;
+    margin-right:10px;
+    box-shadow: 0;
+    transition: all 1s ease-in-out;
+}
+.Inner__Hourly:hover{
+    background-color:white;
+    color:black;
+    box-shadow: 0px 0px 30px  rgba(255, 255, 255, 0.363);
+    font-weight: bold;
+}
+.Hourly__Hours{
+    width:max-content;
+}
