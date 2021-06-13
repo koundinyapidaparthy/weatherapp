@@ -4,7 +4,7 @@ function App() {
   return (
     <Router>
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/weatherapp">
       <Daa />
       </Route>
     </Switch>
