@@ -19,11 +19,11 @@ const HomeWeather = () => {
                         </video>
                     </div>
                         <div className="Fetched__Content">
-                            <div className="IF__Content">
+                            <div className={sortedData2.Values.MainClassname1} >
                                 <div className="Current__Temp">{Math.round(sortedData1.Tempobj.temp)}<sup>o<sub>C</sub></sup></div>
                                 <div className="High__Low">{Math.round(sortedData3.maxe)}<sup>o<sub>C</sub></sup>
                                  <span>/</span> {Math.round(sortedData3.mine)}<sup>o<sub>C</sub></sup></div>
-                                <Hourly ArrayData={sortedData3.Hourly}/>
+                                <Hourly ArrayData={sortedData3.Hourly} sendClass={sortedData2.Values.HourlyClassname1} />
                                 {/* <div>{sortedData1.Tempobj.feels_like}</div>
                                 <div>{sortedData1.wind_speed}</div> */}
                             </div>

@@ -21,19 +21,27 @@ const CustomHook = () => {
     let Values={
         Video:"",
         Classname:"",
+        MainClassname1:"",
+        HourlyClassname1:"",
     };
     if(Data2.loaded1){
         if(Data2.Tempobj.temp>=35){
             Values.Video=Hot;
             Values.Classname="Hot";
+            Values.MainClassname1="IF__Content add1Class1";
+            Values.HourlyClassname1="Inner__Hourly addClassInHourly1";
         }
         else if(Data2.Tempobj.temp>=20 && Data2.Tempobj.temp<35){
             Values.Video=Bw;
             Values.Classname="Bw";
+            Values.MainClassname1="IF__Content";
+            Values.HourlyClassname1="Inner__Hourly";  
         }
         else if(Data2.Tempobj.temp<20){
             Values.Video=Cold;
             Values.Classname="Cold";
+            Values.MainClassname1="IF__Content add1Class2";
+            Values.HourlyClassname1="Inner__Hourly addClassInHourly2";
         }
         
 
