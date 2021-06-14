@@ -18,6 +18,9 @@ const CustomHook = () => {
     const [sortedData4,newsortedData4]=useState({
         loaded4:false
     });
+    const [sortedData5,newsortedData5]=useState({
+        loaded5:false,
+    });
 
     const validatingData = (Data2) => {
 
@@ -30,20 +33,18 @@ const CustomHook = () => {
     };
     if(Data2.loaded1){
         if(Data2.Tempobj.temp>=35){
-            Values.Video=Bw;
-            Values.Classname="Bw";
-            Values.MainClassname1="IF__Content";
-            Values.HourlyClassname1="Inner__Hourly";  
-            Values.videoOpacity="Bw opacityChange";
-
-        }
-        else if(Data2.Tempobj.temp>=20 && Data2.Tempobj.temp<35){
-
             Values.Video=Hot;
             Values.Classname="Hot";
             Values.MainClassname1="IF__Content add1Class1";
             Values.HourlyClassname1="Inner__Hourly addClassInHourly1";
-            Values.videoOpacity=" Hot opacityChange";
+            Values.videoOpacity="backgroundCOLOR opacityChange1";
+        }
+        else if(Data2.Tempobj.temp>=20 && Data2.Tempobj.temp<35){
+            Values.Video=Bw;
+            Values.Classname="Bw";
+            Values.MainClassname1="IF__Content";
+            Values.HourlyClassname1="Inner__Hourly";  
+            Values.videoOpacity="backgroundCOLOR opacityChange2";
             
         }
         else if(Data2.Tempobj.temp<20){
@@ -51,7 +52,7 @@ const CustomHook = () => {
             Values.Classname="Cold";
             Values.MainClassname1="IF__Content add1Class2";
             Values.HourlyClassname1="Inner__Hourly addClassInHourly2";
-            Values.videoOpacity="Cold opacityChange";
+            Values.videoOpacity="backgroundCOLOR opacityChange3";
         }
         
 
@@ -149,6 +150,12 @@ const CustomHook = () => {
             Daily
         })
     }
+    const villageName=(Data)=>{
+        newsortedData5({
+            loaded5:true,
+            locality:Data.locality
+        });
+    }
     useEffect(()=>{
         navigator.geolocation.getCurrentPosition((position)=>{
         if(position.coords.latitude==="" && position.coords.longitude===""){
@@ -157,6 +164,12 @@ const CustomHook = () => {
         else{
             newuserProvidedLoc({loaded:true});
                 if(position.coords.latitude!=="" && position.coords.longitude!==""){
+                    fetch( `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`)
+                        .then(async(data)=>{
+                            const result =await data.json();
+                            villageName(result);
+                        }).catch(e=>console.log(e));
+
                     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=e9f96ca8486c3c3db229029a16c48211`)
                     .then(response => {
                         if(response.ok){
@@ -179,7 +192,7 @@ const CustomHook = () => {
    
 
 
-    return {userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4}
+    return {userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4,sortedData5}
 };
 
 export default CustomHook;
