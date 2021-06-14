@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloud,faCloudRain} from '@fortawesome/free-solid-svg-icons';
 
 const Days = (Data) => {
-    console.log(Data);
     const Daily=Data.ArrayData;
     const Reduced= [];
         for(let i=0;i<Daily.length;i++){
@@ -33,7 +32,6 @@ const Days = (Data) => {
             }
             
         }
-        console.log(Reduced);
     return (
         <>
         <table>

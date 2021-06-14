@@ -61,7 +61,7 @@ const CustomHook = () => {
     const FetchingCurrent=(Data)=>{
         if(Data){
             //  *  current
-            var {dt,feels_like,humidity,sunrise,sunset,temp,wind_speed}=Data.current;
+            var {dt,feels_like,humidity,sunrise,sunset,temp,wind_speed,visibility,pressure,uvi}=Data.current;
     
             // ? Date change
                 // * dt
@@ -77,7 +77,30 @@ const CustomHook = () => {
                 // * sunset
                 var mySunset=new Date(sunset *1000);
                 const SunsetTime=`${mySunset.getHours() >12 ? mySunset.getHours()-12 :mySunset.getHours()}:${mySunset.getMinutes()}`
-    
+
+                // * wind
+                wind_speed=Math.round(wind_speed *3.6);
+                
+                // * visibility
+                visibility=Math.round(visibility/1000)
+
+                // * uvi
+                if(uvi<3){
+                    uvi="low"
+                }
+                else if(uvi>=3 && uvi<6){
+                    uvi="Moderate"
+                }
+                else if(uvi>=6 && uvi<8){
+                    uvi="High"
+                }
+                else if(uvi>=8 && uvi<11){
+                    uvi="Very high"
+                }
+                else if(uvi>=11){
+                    uvi="Extreme"
+                }
+
             // ? new objects
             var Dateobj={
                 CurrentDate:{month,weekday,today},
@@ -91,8 +114,8 @@ const CustomHook = () => {
         if(Dateobj!==undefined){
             var loaded1=true;
         }
-        newsortedData1({Dateobj,Tempobj,humidity,loaded1,wind_speed});
-        validatingData({Dateobj,Tempobj,humidity,loaded1,wind_speed});
+        newsortedData1({Dateobj,Tempobj,humidity,loaded1,wind_speed,visibility,pressure,uvi});
+        validatingData({Dateobj,Tempobj,humidity,loaded1,wind_speed,visibility,pressure,uvi});
     }
 
     const FetchingHourly=(Data)=>{
@@ -139,6 +162,7 @@ const CustomHook = () => {
                         FetchingCurrent(data);
                         FetchingHourly(data);
                         FetchingDaily(data);
+                        // console.log(data);
                     })
                     .catch(err=>console.log("Error"))
                 }

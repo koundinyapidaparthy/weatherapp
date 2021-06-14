@@ -1,0 +1,14 @@
+.Girdding__Content{
+    margin-left:20px;
+    padding-bottom: 20px;
+    display:grid;
+    grid-template-columns: auto auto;
+    div{
+        margin-top:20px;
+        display:flex;
+        flex-direction:column;
+    }
+    span{
+        margin-top:5px;
+    }
+}
