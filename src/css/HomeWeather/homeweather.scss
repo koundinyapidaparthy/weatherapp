@@ -148,21 +148,28 @@
     width: 100%;
     min-height: 35vh;
     position: absolute;
-    top:65%;
+    top:55%;
     visibility:hidden;
+    padding-left:10px;
     animation:bounes 2s linear forwards;
     animation-delay:3s;
+    div{
+        margin-top:10px;
+    }
     .IF__Content{
         width:99%;
         min-height:30vh;
         color: white;
         overflow: hidden;
+        .img{color:white;}
     }
     .add1Class1{
         color:#af0c37;
+        .img{color:#af0c37;}
     }
     .add1Class2{
         color:black;
+        .img{color:black;}
     }
 }
 @keyframes bounes{
@@ -173,7 +180,7 @@
         top:45%;
     }
     100%{
-        top:65%;
+        top:55%;
         visibility: visible;
     }
 }
@@ -186,16 +193,23 @@
     font-size:40px;
     font-weight:bold;
     width:max-content;
-    padding:10px 10px 10px 10px ;
+    margin-left: 10px;
 }
 .High__Low{
-    @include flexing(row,center,center);
+    margin-left: 10px;
     width:max-content;
-    padding-left:20px;
+    font-weight:bold;
+    font-size:20px;
     span{
         font-weight: bold;
         font-size:25px;
         margin-left: 1px;
         margin-right: 1px;
     }
+}
+.Content__HourlyLabel{
+    margin-left: 10px;
+    width:max-content;
+    font-weight:bold;
+    font-size:15px;
 }

@@ -1,12 +1,15 @@
-import "../../scss/hourly.css"; 
+import "../../css/Hours/hourly.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner,faCloudSun,faCloudSunRain,faCloudMoonRain,faCloudMoon } from '@fortawesome/free-solid-svg-icons';
+
+// TODO:
+// newval bring sunset and sunrise.
 
 
 const Hourly = (Data) => {
     var Arr=Data.ArrayData;
     var newArr=[];
-    for(let i=0;i<Arr.length;i++){
+    for(let i=0;i<Arr.length - 24;i++){
         const myDate=new Date(Arr[i].dt *1000);
         const newval=myDate.getHours();
         const obj={
@@ -16,7 +19,7 @@ const Hourly = (Data) => {
             desc:Arr[i].weather[0].description
         }
         if(Arr[i].weather[0].main[0]==="R"){
-            if(newval>=17 || newval<=6){
+            if(newval>=19 || newval<=6){
                 obj.main="NC"+Arr[i].weather[0].main[0];
             }
             else{
@@ -24,7 +27,7 @@ const Hourly = (Data) => {
             }
         }
         else if(Arr[i].weather[0].main[0]==="C"){
-            if(newval>=17 || newval<=6){
+            if(newval>=19 || newval<=6){
                 obj.main="N"+Arr[i].weather[0].main[0];
             }
             else{
@@ -51,6 +54,7 @@ const Hourly = (Data) => {
         }
         newArr.push(obj);
     }
+    // console.log(newArr);
     return (
         <>
 
@@ -65,7 +69,6 @@ const Hourly = (Data) => {
                                 <FontAwesomeIcon icon={data.main} className="img" />
                                 <div className="Hourly__Temp">
                                     {data.temp}
-
                                 </div>
                             </div>
                 )
@@ -77,3 +80,4 @@ const Hourly = (Data) => {
 }
 
 export default Hourly
+

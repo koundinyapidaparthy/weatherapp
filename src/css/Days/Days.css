@@ -1,0 +1,19 @@
+table {
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 90%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  padding-bottom: 20px;
+}
+
+table .img {
+  width: 25px;
+  height: 25px;
+}
+
+table tr td {
+  text-align: center;
+}
+/*# sourceMappingURL=Days.css.map */

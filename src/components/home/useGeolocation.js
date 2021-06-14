@@ -15,6 +15,9 @@ const CustomHook = () => {
     const [sortedData3,newsortedData3]=useState({
         loaded3:false
     });
+    const [sortedData4,newsortedData4]=useState({
+        loaded4:false
+    });
 
     const validatingData = (Data2) => {
 
@@ -36,6 +39,8 @@ const CustomHook = () => {
             Values.Classname="Bw";
             Values.MainClassname1="IF__Content";
             Values.HourlyClassname1="Inner__Hourly";  
+
+            
         }
         else if(Data2.Tempobj.temp<20){
             Values.Video=Cold;
@@ -108,6 +113,14 @@ const CustomHook = () => {
             mine,maxe
         })
     }
+    const FetchingDaily=(Data)=>{
+        const Daily=Data.daily;
+        
+        newsortedData4({
+            loaded4:true,
+            Daily
+        })
+    }
     useEffect(()=>{
         navigator.geolocation.getCurrentPosition((position)=>{
         if(position.coords.latitude==="" && position.coords.longitude===""){
@@ -125,19 +138,19 @@ const CustomHook = () => {
                     .then(data=>{
                         FetchingCurrent(data);
                         FetchingHourly(data);
-                        // console.log(data);
+                        FetchingDaily(data);
                     })
                     .catch(err=>console.log("Error"))
                 }
 
         };
     });
-    },[]);
+    },[ ]);
 
    
 
 
-    return {userProvidedLoc,sortedData1,sortedData2,sortedData3}
+    return {userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4}
 };
 
 export default CustomHook;

@@ -1,0 +1,57 @@
+.Hourly__Main{
+    width:100%;
+    height:max-content;
+    display:flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+.Hourly__Main::-webkit-scrollbar{
+    display:none;
+}
+.Inner__Hourly{
+    height:max-content;
+    padding:15px 20px 15px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:5px;
+    margin-right:10px;
+    box-shadow: 0;
+    .Hourly__Hours{
+        width:max-content;
+    }
+    .img{
+        width:25px;
+        height:25px;
+        transition: all 1s ease-in-out;
+    }
+
+    transition: all 1s ease-in-out;
+    
+}
+
+    @media only screen and(min-width:1024px){
+        .Inner__Hourly{
+            &:hover{
+                background-color:white;
+                color:black;
+                box-shadow: 0px 0px 30px  rgba(255, 255, 255, 0.363);
+                font-weight: bold;
+                .img{color:black}
+            } 
+    }
+        .addClassInHourly1:hover{
+            background-color:#af0c37;
+            color:white;
+            .img{color:white}
+        }
+        .addClassInHourly2:hover{
+            background-color:black;
+            color:white;
+            .img{color:white}
+        }
+        
+    }
+    
+

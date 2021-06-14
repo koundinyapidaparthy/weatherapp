@@ -239,12 +239,17 @@
   width: 100%;
   min-height: 35vh;
   position: absolute;
-  top: 65%;
+  top: 55%;
   visibility: hidden;
+  padding-left: 10px;
   -webkit-animation: bounes 2s linear forwards;
           animation: bounes 2s linear forwards;
   -webkit-animation-delay: 3s;
           animation-delay: 3s;
+}
+
+.Fetched__Content div {
+  margin-top: 10px;
 }
 
 .Fetched__Content .IF__Content {
@@ -254,11 +259,23 @@
   overflow: hidden;
 }
 
+.Fetched__Content .IF__Content .img {
+  color: white;
+}
+
 .Fetched__Content .add1Class1 {
   color: #af0c37;
 }
 
+.Fetched__Content .add1Class1 .img {
+  color: #af0c37;
+}
+
 .Fetched__Content .add1Class2 {
+  color: black;
+}
+
+.Fetched__Content .add1Class2 .img {
   color: black;
 }
 
@@ -270,7 +287,7 @@
     top: 45%;
   }
   100% {
-    top: 65%;
+    top: 55%;
     visibility: visible;
   }
 }
@@ -283,7 +300,7 @@
     top: 45%;
   }
   100% {
-    top: 65%;
+    top: 55%;
     visibility: visible;
   }
 }
@@ -298,27 +315,16 @@
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  padding: 10px 10px 10px 10px;
+  margin-left: 10px;
 }
 
 .High__Low {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-left: 10px;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  padding-left: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .High__Low span {
@@ -327,4 +333,13 @@
   margin-left: 1px;
   margin-right: 1px;
 }
-/*# sourceMappingURL=HomeWeather.css.map */
+
+.Content__HourlyLabel {
+  margin-left: 10px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-weight: bold;
+  font-size: 15px;
+}
+/*# sourceMappingURL=homeweather.css.map */
