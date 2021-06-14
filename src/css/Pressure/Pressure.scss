@@ -2,13 +2,19 @@
     margin-left:20px;
     padding-bottom: 20px;
     display:grid;
-    grid-template-columns: auto auto;
-    div{
+    grid-template-columns: repeat(6,calc(100%/6));
+        div{
         margin-top:20px;
         display:flex;
         flex-direction:column;
     }
     span{
         margin-top:5px;
+    }
+    @media only screen and (max-width: 900px){
+        grid-template-columns:auto auto auto;
+    }
+    @media only screen and (max-width: 426px){
+        grid-template-columns:auto auto;
     }
 }

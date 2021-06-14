@@ -1,14 +1,24 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "../../css/HomeWeather/homeweather.css"
 import useGeolocation from "./useGeolocation";
 import Hourly from "./Hourly";
 import Days from "./Days";
 import Pressure from "./Pressure";
 const HomeWeather = () => {
+    const [color,newColor]=useState(false);
     const {userProvidedLoc,sortedData1,sortedData2,sortedData3, sortedData4}=useGeolocation();
     if( userProvidedLoc.loaded && sortedData1.loaded1  && sortedData2.loaded2 && sortedData3.loaded3 &&  sortedData4.loaded4){
         // console.log({userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4});
         // console.log(sortedData1);
+        const changeColor=()=>{
+            if(window.scrollY>=200){
+                newColor(true)
+            }
+            else{
+                newColor(false)
+            }
+        }
+        window.addEventListener("scroll",changeColor);
     }
     return (
         <div className="Main">
@@ -17,7 +27,7 @@ const HomeWeather = () => {
                 <>
                     <div className="travel1"></div>
                     <div className="Fetched__Main">
-                        <video className={sortedData2.Values.Classname}  loop autoPlay muted>
+                        <video className={!color ? sortedData2.Values.Classname : sortedData2.Values.videoOpacity}  loop autoPlay muted>
                             <source  src={sortedData2.Values.Video} type="video/mp4" ></source>
                         </video>
                     </div>

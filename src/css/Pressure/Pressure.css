@@ -3,8 +3,8 @@
   padding-bottom: 20px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto auto;
-      grid-template-columns: auto auto;
+  -ms-grid-columns: (calc(100%/6))[6];
+      grid-template-columns: repeat(6, calc(100%/6));
 }
 
 .Girdding__Content div {
@@ -20,5 +20,19 @@
 
 .Girdding__Content span {
   margin-top: 5px;
+}
+
+@media only screen and (max-width: 900px) {
+  .Girdding__Content {
+    -ms-grid-columns: auto auto auto;
+        grid-template-columns: auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 426px) {
+  .Girdding__Content {
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+  }
 }
 /*# sourceMappingURL=Pressure.css.map */
