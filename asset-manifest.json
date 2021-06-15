@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/weatherapp/static/css/main.feb0412f.chunk.css",
+    "main.css": "/weatherapp/static/css/main.a15638d0.chunk.css",
     "main.js": "/weatherapp/static/js/main.bf95130d.chunk.js",
     "main.js.map": "/weatherapp/static/js/main.bf95130d.chunk.js.map",
     "runtime-main.js": "/weatherapp/static/js/runtime-main.aa718fbd.js",
@@ -10,7 +10,7 @@
     "static/js/3.d4cdc27b.chunk.js": "/weatherapp/static/js/3.d4cdc27b.chunk.js",
     "static/js/3.d4cdc27b.chunk.js.map": "/weatherapp/static/js/3.d4cdc27b.chunk.js.map",
     "index.html": "/weatherapp/index.html",
-    "static/css/main.feb0412f.chunk.css.map": "/weatherapp/static/css/main.feb0412f.chunk.css.map",
+    "static/css/main.a15638d0.chunk.css.map": "/weatherapp/static/css/main.a15638d0.chunk.css.map",
     "static/js/2.005ac5c1.chunk.js.LICENSE.txt": "/weatherapp/static/js/2.005ac5c1.chunk.js.LICENSE.txt",
     "static/media/BW.dbd358a0.mp4": "/weatherapp/static/media/BW.dbd358a0.mp4",
     "static/media/Cold.9543c939.mp4": "/weatherapp/static/media/Cold.9543c939.mp4",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.aa718fbd.js",
     "static/js/2.005ac5c1.chunk.js",
-    "static/css/main.feb0412f.chunk.css",
+    "static/css/main.a15638d0.chunk.css",
     "static/js/main.bf95130d.chunk.js"
   ]
 }
