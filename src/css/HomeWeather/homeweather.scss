@@ -46,8 +46,139 @@
 .Main{
     width:100%;
     height:100vh;
+    overflow: hidden;
+}
+.header{
+    position: fixed;
+    top: -200px;
+    padding:10px 0px 10px 0px;
+    left: 0;
+    width:100%;
+    height:5vh;
+    color:rgb(16, 155, 197);
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1;
+    background-color: transparent;
+    @include flexing(row,space-around,center);
+    animation: topheader 1s linear forwards;
+    animation-delay: 3s;
+    .img{
+        cursor:pointer;
+    }
+    .input__icon{
+        width:50%;
+        height:3vh;
+        @include flexing(row,space-around,center);
+        input{
+            width:90%;
+            height:3vh;
+            border-radius: 5px;
+            border:1px solid white;
+            padding-left: 10px;
+            background-color:rgb(16, 155, 197);
+            &:focus{
+                outline:none;
+                color:white;
+            }
+            font-family:Arial, FontAwesome;
+            &::placeholder{
+                font-weight: bold;
+                text-transform: uppercase;
+                color:white;
+            }
+        }
+        .img{
+            margin-left:10px
+        }
+    }
+    .img1{
+        cursor: pointer;
+    }
+    @media only screen and (max-width:768px){
+        .header__email{
+            display: none;
+        }
+        .img1{
+            display:block;
+        }
+    }
+    
+}
+.add1header1{
+    color:#af0c37;
+    .input__icon{
+        input{
+            background-color:#af0c37;
+        }
+    }
+}
+.add2header2{
+    color:black;
+    .input__icon{
+        input{
+            background-color:black;
+        }
+    }
+}
+.headeradded1{
+    background-color:black;
+}
+.headeradded2{
+    background-color:white;
+}
+@keyframes topheader {
+    to{
+        top: 0px;
+    }
 }
 
+.menu{
+    position: fixed;
+    top: 0;
+    right:0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    width:100%;
+    height:100vh;
+    @include flexing(row,flex-end,center);
+    .menu__box{
+        width:50%;
+        background-color:white;
+        color:rgb(16, 155, 197);
+        @include flexing(row,center,center);
+        @media only screen and (min-width:920px){
+            width:30%;
+        }
+        @media only screen and (max-width:650px){
+            width:100%;
+        }
+        .img2{
+            position: fixed;
+            right:20px;
+            top:20px;
+            cursor: pointer;
+            font-size:20px;
+        }
+        .menu__center{
+            width:90%;
+            height:97vh;
+            margin-top:70px;
+            @include flexing(column,"" ,center);
+            div{
+                width:100%;
+                height:50px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+                @include flexing(row,center,center);
+                a{
+                    font-size:20px;
+                    text-decoration: none;
+                }
+            }
+           
+        }
+    }
+}
 .travel1{
     position: absolute;
     width:100%;

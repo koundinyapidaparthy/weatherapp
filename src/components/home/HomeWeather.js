@@ -5,13 +5,14 @@ import Hourly from "./Hourly";
 import Days from "./Days";
 import Pressure from "./Pressure";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt,faBars,faTimesCircle,faRocket} from '@fortawesome/free-solid-svg-icons';
 
 const HomeWeather = () => {
     const [color,newColor]=useState(false);
+    const [clicked,newClicked]=useState(false);
     const {userProvidedLoc,sortedData1,sortedData2,sortedData3, sortedData4,sortedData5}=useGeolocation();
     if( userProvidedLoc.loaded && sortedData1.loaded1  && sortedData2.loaded2 && sortedData3.loaded3 &&  sortedData4.loaded4 && sortedData5.loaded5){
-        console.log({userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4 ,sortedData5});
+        // console.log({userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4 ,sortedData5});
         const changeColor=()=>{
             if(window.scrollY>=200){
                 newColor(true)
@@ -22,12 +23,33 @@ const HomeWeather = () => {
         }
         window.addEventListener("scroll",changeColor);
     }
+    const fullScreen1=()=>{newClicked(true);}
+    const fullScreen2=()=>{newClicked(false);}
+    const reloading=()=>{window.location.reload();}
     return (
         <div className="Main">
             {
                 userProvidedLoc.loaded && sortedData1.loaded1  && sortedData2.loaded2 && sortedData3.loaded3 &&  sortedData4.loaded4 && sortedData5.loaded5?
                 <>
                     <div className="travel1"></div>
+                    {clicked ? 
+                        <div className="menu">
+                            <div className="menu__box">
+                                <FontAwesomeIcon icon={faTimesCircle} className="img2" onClick={fullScreen2} />
+                                <div className="menu__center">
+                                    <div><a href="/" >@feedback</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    :<></>}
+                        <div className={!color ? sortedData2.Values.headerClassname1 : sortedData2.Values.headerClassname2 }>
+                            <FontAwesomeIcon icon={sortedData2.Values.icon} className="img" onClick={reloading} />
+                            <div className="input__icon">
+                                <input type="text" placeholder="&#xF002;  City" />
+                                <FontAwesomeIcon icon={faRocket} className="img" />
+                            </div>
+                            <FontAwesomeIcon icon={faBars} className="img1" onClick={fullScreen1} />
+                        </div>
                     <div className={!color ? "backgroundCOLOR" : sortedData2.Values.videoOpacity}></div>
                     <div className="Fetched__Main">
                         <video className={sortedData2.Values.Classname}  loop autoPlay muted>

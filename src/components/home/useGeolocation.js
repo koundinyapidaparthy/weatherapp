@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Hot from "../../videos/Hot.mp4"
 import Bw from "../../videos/BW.mp4"
 import Cold from "../../videos/Cold.mp4"
+import { faHome,faIgloo,faHouseDamage} from '@fortawesome/free-solid-svg-icons';
 const CustomHook = () => {
     const [userProvidedLoc,newuserProvidedLoc]=useState({
         loaded:false
@@ -30,29 +31,41 @@ const CustomHook = () => {
         MainClassname1:"",
         HourlyClassname1:"",
         videoOpacity:"",
+        icon:"",
+        headerClassname1:"",
+        headerClassname2:"",
     };
     if(Data2.loaded1){
-        if(Data2.Tempobj.temp>=35){
+        if(Data2.Tempobj.temp>=30){
             Values.Video=Hot;
             Values.Classname="Hot";
             Values.MainClassname1="IF__Content add1Class1";
             Values.HourlyClassname1="Inner__Hourly addClassInHourly1";
             Values.videoOpacity="backgroundCOLOR opacityChange1";
+            Values.icon=faHouseDamage;
+            Values.headerClassname1="header add1header1";
+            Values.headerClassname2="header add1header1 headeradded1";
         }
-        else if(Data2.Tempobj.temp>=20 && Data2.Tempobj.temp<35){
+        else if(Data2.Tempobj.temp>=25 && Data2.Tempobj.temp<30){
             Values.Video=Bw;
             Values.Classname="Bw";
             Values.MainClassname1="IF__Content";
             Values.HourlyClassname1="Inner__Hourly";  
             Values.videoOpacity="backgroundCOLOR opacityChange2";
-            
+            Values.icon=faHome;
+            Values.headerClassname1="header";
+            Values.headerClassname2="header headeradded1";
         }
-        else if(Data2.Tempobj.temp<20){
+        else if(Data2.Tempobj.temp<25){
             Values.Video=Cold;
             Values.Classname="Cold";
             Values.MainClassname1="IF__Content add1Class2";
             Values.HourlyClassname1="Inner__Hourly addClassInHourly2";
             Values.videoOpacity="backgroundCOLOR opacityChange3";
+            Values.icon=faIgloo;
+            Values.headerClassname="header";
+            Values.headerClassname1="header add2header2";
+            Values.headerClassname2="header add2header2 headeradded2";
         }
         
 
