@@ -101,7 +101,7 @@ const City = () => {
                 <>
                         <div className="Loading">
                                     <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img"/>
-                                    <div className="Waiting">Failed To Fetch</div>
+                                    <div className="Waiting">Failed To Fetch { userName}</div>
                         </div>
                 </>
             }
