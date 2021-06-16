@@ -34,6 +34,10 @@ const CustomHook = () => {
         icon:"",
         headerClassname1:"",
         headerClassname2:"",
+        DispatchColor:{
+            forImg:"",
+            forClass:"",
+        },
     };
     if(Data2.loaded1){
         if(Data2.Tempobj.temp>=30){
@@ -45,6 +49,8 @@ const CustomHook = () => {
             Values.icon=faHouseDamage;
             Values.headerClassname1="header add1header1";
             Values.headerClassname2="header add1header1 headeradded1";
+            Values.DispatchColor.forClass="City__Name hotColor";
+            Values.DispatchColor.forImg="iconColor iconColor1";
         }
         else if(Data2.Tempobj.temp>=25 && Data2.Tempobj.temp<30){
             Values.Video=Bw;
@@ -55,6 +61,8 @@ const CustomHook = () => {
             Values.icon=faHome;
             Values.headerClassname1="header";
             Values.headerClassname2="header headeradded1";
+            Values.DispatchColor.forClass="City__Name";
+            Values.DispatchColor.forImg="iconColor";
         }
         else if(Data2.Tempobj.temp<25){
             Values.Video=Cold;
@@ -66,6 +74,8 @@ const CustomHook = () => {
             Values.headerClassname="header";
             Values.headerClassname1="header add2header2";
             Values.headerClassname2="header add2header2 headeradded2";
+            Values.DispatchColor.forClass="City__Name coldColor";
+            Values.DispatchColor.forImg="iconColor iconColor2";
         }
         
 
@@ -193,7 +203,6 @@ const CustomHook = () => {
                         FetchingCurrent(data);
                         FetchingHourly(data);
                         FetchingDaily(data);
-                        // console.log(data);
                     })
                     .catch(err=>console.log("Error"))
                 }

@@ -1,0 +1,85 @@
+@mixin flexing($val1,$val2,$val3) {
+    display:flex;
+    flex-direction:$val1;
+    justify-content:$val2;
+    align-items:$val3;
+}
+.CITYCONTENT{
+    width:100%;
+    height:100vh;
+    margin-top:20px;
+    @include flexing(column,flex-start,center);
+    overflow: hidden;
+}
+.iconColor{
+    width:90%;
+    height:10vh;
+    @include flexing(row,space-between,center);
+    color:rgb(16, 155, 197);
+    font-weight: bold;
+   .imgColor{
+    cursor:pointer;
+    font-size: 20px;
+   }
+
+}
+.iconColor1{
+    color:#af0c37;
+}
+.iconColor2{
+    color:black;
+}
+.City__Name{
+    margin-top:30px;
+    width:90%;
+    height:90vh;
+    display: grid;
+    grid-template-columns: repeat(3,calc(100%/3));
+    place-items: center;
+    div{
+        @include flexing(column,center,center);
+        width:10rem;
+        height: 7rem;
+        background-color:rgb(16, 155, 197);
+        color:white;
+        margin-bottom: 10px;
+        border-radius:10px;
+        font-size:20px;
+        font-weight:bold;
+    }
+}
+.hotColor{
+    div{
+        background-color:#af0c37;
+    }
+}
+.coldColor{
+    div{
+        background-color:black;
+        color:white;
+    }
+}
+
+@media only screen and (max-width:650px){
+    .City__Name{
+        grid-template-columns: repeat(2,calc(100%/2));
+    }
+}
+@media only screen and (max-width:400px){
+    .City__Name{
+        div{
+            width:8em;
+            height:5em;
+            font-size: 15px;
+        }
+    }
+}
+@media only screen and (max-width:300px){    
+    .City__Name{
+        grid-template-columns: repeat(1,calc(100%/1));
+        div{
+            width:8rem;
+            font-size: 15px;
+        }
+    }
+}

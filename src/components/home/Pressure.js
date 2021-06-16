@@ -14,7 +14,7 @@ const Pressure = (Data) => {
                     <span>Visibility</span>
                 </div>
                 <div>
-                    <span>{WeatherDetails.visibility}hPa</span>
+                    <span>{WeatherDetails.pressure} hPa</span>
                     <span>Air Pressure</span>
                 </div>
                 <div>

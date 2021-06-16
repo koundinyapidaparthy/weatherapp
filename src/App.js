@@ -1,13 +1,17 @@
 import {BrowserRouter as Router,Route,Switch,} from  "react-router-dom";
-import Daa from "./components/home/HomeWeather";
+import Home from "./components/home/HomeWeather";
+import Cityname from "./components/cityName/City";
 function App() {
   return (
     <Router>
-    <Switch>
-      <Route exact path="/weatherapp">
-      <Daa />
-      </Route>
-    </Switch>
+        <Switch>
+          <Route exact path="/weatherapp">
+          <Home />
+          </Route>
+          <Route  path="/city" >
+          <Cityname />
+          </Route>
+        </Switch>
   </Router>
   );
 }
