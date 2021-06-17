@@ -56,7 +56,7 @@ const Feedback = () => {
                         <div className="Feedback__form2">
                             <label>
                                 <span>Provide Feedback Here 👇</span> 
-                                <textarea  rows="4" cols="50" name="subject"  id="Textare"  />
+                                <textarea  rows="4" cols="50" name="message"  id="Textare"  />
                             </label>
                             <input type="submit" name="email" id="sendFeedback" value="send feedback" />
                         </div>
