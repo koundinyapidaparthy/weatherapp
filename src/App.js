@@ -1,6 +1,7 @@
 import {BrowserRouter as Router,Route,Switch,} from  "react-router-dom";
 import Home from "./components/home/HomeWeather";
 import Cityname from "./components/cityName/City";
+import Feedback from "./components/Feedback/Feedback";
 function App() {
   return (
     <Router>
@@ -10,6 +11,9 @@ function App() {
           </Route>
           <Route  path="/city" >
           <Cityname />
+          </Route>
+          <Route  path="/feedback" >
+          <Feedback />
           </Route>
         </Switch>
   </Router>

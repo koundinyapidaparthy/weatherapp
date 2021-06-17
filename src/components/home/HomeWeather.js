@@ -30,25 +30,28 @@ const HomeWeather = () => {
         const fullScreen1=()=>{newClicked(true);}
         const fullScreen2=()=>{newClicked(false);}
         const reloading=()=>{window.location.reload();}
-        const sendingData=()=>{
+        const sendingData=(event)=>{
             const cityName=document.getElementById("InputName").value.trim();
             const regexpattern=/^[A-Za-z]+$/;
-            if(cityName===""){
-
+                if(cityName===""){
+                    alert("Enter city name");
+                }
+                else if(!cityName.match(regexpattern)){
+                    alert("enter valid city name");
+                }
+                else{
+                    dispatch(
+                        setUserLoginDetails({
+                            name:cityName,
+                            color:sortedData2.Values.DispatchColor,
+                        })
+                    )
+                    history.push("/city");
+                }
         }
-        else if(!cityName.match(regexpattern)){
-            alert("enter valid city name");
+        const gotoFeedback=()=>{
+            history.push("/feedback");
         }
-        else{
-            dispatch(
-                setUserLoginDetails({
-                    name:cityName,
-                    color:sortedData2.Values.DispatchColor,
-                })
-            )
-            history.push("/city");
-        }
-    }
     return (
         <div className="Main">
             {
@@ -60,7 +63,7 @@ const HomeWeather = () => {
                             <div className="menu__box">
                                 <FontAwesomeIcon icon={faTimesCircle} className="img2" onClick={fullScreen2} />
                                 <div className="menu__center">
-                                    <div><a href="/" >@feedback</a></div>
+                                    <div><span className="feedback" onClick={gotoFeedback}>@feedback</span></div>
                                 </div>
                             </div>
                         </div>

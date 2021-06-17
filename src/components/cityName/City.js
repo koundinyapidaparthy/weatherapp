@@ -41,11 +41,9 @@ const City = () => {
                 FetchedData(data);
             }
             else{
-                console.log("Error");
             }
         })
         .catch(err=>{
-            console.log("Error");
         })
     },[userName]);
 
@@ -101,7 +99,12 @@ const City = () => {
                 <>
                         <div className="Loading">
                                     <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img"/>
-                                    <div className="Waiting">Failed To Fetch { userName}</div>
+                                    {
+                                        userName ?
+                                        <div className="Waiting">Failed To Fetch { userName}🤔</div>
+                                        :
+                                        <div className="Waiting">Failed To Fetch😌</div>
+                                    }
                         </div>
                 </>
             }

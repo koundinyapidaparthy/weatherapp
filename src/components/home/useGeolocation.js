@@ -23,70 +23,37 @@ const CustomHook = () => {
         loaded5:false,
     });
 
-    const validatingData = (Data2) => {
 
-    let Values={
-        Video:"",
-        Classname:"",
-        MainClassname1:"",
-        HourlyClassname1:"",
-        videoOpacity:"",
-        icon:"",
-        headerClassname1:"",
-        headerClassname2:"",
-        DispatchColor:{
-            forImg:"",
-            forClass:"",
-        },
-    };
-    if(Data2.loaded1){
-        if(Data2.Tempobj.temp>=30){
-            Values.Video=Hot;
-            Values.Classname="Hot";
-            Values.MainClassname1="IF__Content add1Class1";
-            Values.HourlyClassname1="Inner__Hourly addClassInHourly1";
-            Values.videoOpacity="backgroundCOLOR opacityChange1";
-            Values.icon=faHouseDamage;
-            Values.headerClassname1="header add1header1";
-            Values.headerClassname2="header add1header1 headeradded1";
-            Values.DispatchColor.forClass="City__Name hotColor";
-            Values.DispatchColor.forImg="iconColor iconColor1";
+    useEffect(()=>{
+        navigator.geolocation.getCurrentPosition((position)=>{
+        if(position.coords.latitude==="" && position.coords.longitude===""){
+            newuserProvidedLoc( {loaded:false})
         }
-        else if(Data2.Tempobj.temp>=25 && Data2.Tempobj.temp<30){
-            Values.Video=Bw;
-            Values.Classname="Bw";
-            Values.MainClassname1="IF__Content";
-            Values.HourlyClassname1="Inner__Hourly";  
-            Values.videoOpacity="backgroundCOLOR opacityChange2";
-            Values.icon=faHome;
-            Values.headerClassname1="header";
-            Values.headerClassname2="header headeradded1";
-            Values.DispatchColor.forClass="City__Name";
-            Values.DispatchColor.forImg="iconColor";
-        }
-        else if(Data2.Tempobj.temp<25){
-            Values.Video=Cold;
-            Values.Classname="Cold";
-            Values.MainClassname1="IF__Content add1Class2";
-            Values.HourlyClassname1="Inner__Hourly addClassInHourly2";
-            Values.videoOpacity="backgroundCOLOR opacityChange3";
-            Values.icon=faIgloo;
-            Values.headerClassname="header";
-            Values.headerClassname1="header add2header2";
-            Values.headerClassname2="header add2header2 headeradded2";
-            Values.DispatchColor.forClass="City__Name coldColor";
-            Values.DispatchColor.forImg="iconColor iconColor2";
-        }
-        
+        else{
+            newuserProvidedLoc({loaded:true});
+                if(position.coords.latitude!=="" && position.coords.longitude!==""){
+                    fetch( `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`)
+                        .then(async(data)=>{
+                            const result =await data.json();
+                            villageName(result);
+                        }).catch(e=>console.log(e));
 
-        newsortedData2({
-            loaded2:true,
-            Values
-        })
-    }
-}
+                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=e9f96ca8486c3c3db229029a16c48211`)
+                    .then(response => {
+                        if(response.ok){
+                            return  response.json()
+                        }
+                    })
+                    .then(data=>{
+                        FetchingCurrent(data);
+                        FetchingHourly(data);
+                        FetchingDaily(data);
+                    })
+                    .catch(err=>console.log("Error"))
+                }
 
-
+        };
+    });
     const FetchingCurrent=(Data)=>{
         if(Data){
             //  *  current
@@ -146,69 +113,98 @@ const CustomHook = () => {
         newsortedData1({Dateobj,Tempobj,humidity,loaded1,wind_speed,visibility,pressure,uvi});
         validatingData({Dateobj,Tempobj,humidity,loaded1,wind_speed,visibility,pressure,uvi});
     }
+    const validatingData = (Data2) => {
 
-    const FetchingHourly=(Data)=>{
-        const Hourly=Data.hourly;
-        var mine=Number.MAX_VALUE;
-        var maxe=Number.MIN_VALUE;
-        for(let i=0;i<Hourly.length;i++){
-            if(Hourly[i].temp>maxe){
-                maxe=Hourly[i].temp;
-            }
-            if(Hourly[i].temp<mine){
-                mine=Hourly[i].temp;
-            }
-        }
-        newsortedData3({
-            loaded3:true,
-            Hourly,
-            mine,maxe
-        })
-    }
-    const FetchingDaily=(Data)=>{
-        const Daily=Data.daily;
-        
-        newsortedData4({
-            loaded4:true,
-            Daily
-        })
-    }
-    const villageName=(Data)=>{
-        newsortedData5({
-            loaded5:true,
-            locality:Data.locality
-        });
-    }
-    useEffect(()=>{
-        navigator.geolocation.getCurrentPosition((position)=>{
-        if(position.coords.latitude==="" && position.coords.longitude===""){
-            newuserProvidedLoc( {loaded:false})
-        }
-        else{
-            newuserProvidedLoc({loaded:true});
-                if(position.coords.latitude!=="" && position.coords.longitude!==""){
-                    fetch( `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`)
-                        .then(async(data)=>{
-                            const result =await data.json();
-                            villageName(result);
-                        }).catch(e=>console.log(e));
-
-                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=e9f96ca8486c3c3db229029a16c48211`)
-                    .then(response => {
-                        if(response.ok){
-                            return  response.json()
-                        }
-                    })
-                    .then(data=>{
-                        FetchingCurrent(data);
-                        FetchingHourly(data);
-                        FetchingDaily(data);
-                    })
-                    .catch(err=>console.log("Error"))
-                }
-
+        let Values={
+            Video:"",
+            Classname:"",
+            MainClassname1:"",
+            HourlyClassname1:"",
+            videoOpacity:"",
+            icon:"",
+            headerClassname1:"",
+            headerClassname2:"",
+            DispatchColor:{
+                forImg:"",
+                forClass:"",
+            },
         };
-    });
+        if(Data2.loaded1){
+            if(Data2.Tempobj.temp>=30){
+                Values.Video=Hot;
+                Values.Classname="Hot";
+                Values.MainClassname1="IF__Content add1Class1";
+                Values.HourlyClassname1="Inner__Hourly addClassInHourly1";
+                Values.videoOpacity="backgroundCOLOR opacityChange1";
+                Values.icon=faHouseDamage;
+                Values.headerClassname1="header add1header1";
+                Values.headerClassname2="header add1header1 headeradded1";
+                Values.DispatchColor.forClass="City__Name hotColor";
+                Values.DispatchColor.forImg="iconColor iconColor1";
+            }
+            else if(Data2.Tempobj.temp>=25 && Data2.Tempobj.temp<30){
+                Values.Video=Bw;
+                Values.Classname="Bw";
+                Values.MainClassname1="IF__Content";
+                Values.HourlyClassname1="Inner__Hourly";  
+                Values.videoOpacity="backgroundCOLOR opacityChange2";
+                Values.icon=faHome;
+                Values.headerClassname1="header";
+                Values.headerClassname2="header headeradded1";
+                Values.DispatchColor.forClass="City__Name";
+                Values.DispatchColor.forImg="iconColor";
+            }
+            else if(Data2.Tempobj.temp<25){
+                Values.Video=Cold;
+                Values.Classname="Cold";
+                Values.MainClassname1="IF__Content add1Class2";
+                Values.HourlyClassname1="Inner__Hourly addClassInHourly2";
+                Values.videoOpacity="backgroundCOLOR opacityChange3";
+                Values.icon=faIgloo;
+                Values.headerClassname="header";
+                Values.headerClassname1="header add2header2";
+                Values.headerClassname2="header add2header2 headeradded2";
+                Values.DispatchColor.forClass="City__Name coldColor";
+                Values.DispatchColor.forImg="iconColor iconColor2";
+            }
+            newsortedData2({
+                loaded2:true,
+                Values
+            })
+        }
+    }
+        const FetchingHourly=(Data)=>{
+            const Hourly=Data.hourly;
+            var mine=Number.MAX_VALUE;
+            var maxe=Number.MIN_VALUE;
+            for(let i=0;i<Hourly.length;i++){
+                if(Hourly[i].temp>maxe){
+                    maxe=Hourly[i].temp;
+                }
+                if(Hourly[i].temp<mine){
+                    mine=Hourly[i].temp;
+                }
+            }
+            newsortedData3({
+                loaded3:true,
+                Hourly,
+                mine,maxe
+            })
+        }
+        const FetchingDaily=(Data)=>{
+            const Daily=Data.daily;
+            
+            newsortedData4({
+                loaded4:true,
+                Daily
+            })
+        }
+        const villageName=(Data)=>{
+            newsortedData5({
+                loaded5:true,
+                locality:Data.locality
+            });
+        }
     },[]);
 
    

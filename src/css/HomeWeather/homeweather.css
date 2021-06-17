@@ -328,9 +328,9 @@
           align-items: center;
 }
 
-.menu .menu__box .menu__center div a {
-  font-size: 20px;
-  text-decoration: none;
+.menu .menu__box .menu__center div .feedback {
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .travel1 {
