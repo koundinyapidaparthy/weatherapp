@@ -14,14 +14,18 @@ const Feedback = () => {
         const Email=document.getElementById("Email").value.trim();
         const Textare=document.getElementById("Textare").value.trim();
         if(Name==="" || Email==="" || Textare===""){
-
+            alert("Enter some data");
         }
         else{
             emailjs.sendForm('service_koundi', 'template_ywimchr', e.target, 'user_NoAYEf5NbxWcXTsa6fT5x')
             .then((result) => {
-            console.log(result.text);
+            console.log(result);
+                if(result.status===200){
+                    alert("Thank You 😎");
+                }
             }, (error) => {
-            console.log(error.text);
+                console.log(error.text);
+                alert("Oops! Something Wrong 🥺")
             });
             e.target.reset();
         }
@@ -46,7 +50,7 @@ const Feedback = () => {
                                 <span className="lefting">
                                     Any Bugs :
                                 </span>
-                                <input type="number" name="email" id="Email" />
+                                <input type="text" name="email" id="Email" />
                             </label>
                         </div>
                         <div className="Feedback__form2">
