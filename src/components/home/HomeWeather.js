@@ -11,6 +11,7 @@ import {useHistory} from "react-router-dom";
 import {setUserLoginDetails} from "../../user/userSlice";
 const HomeWeather = () => {
     const dispatch=useDispatch();
+    // const refVideo=useRef();
     const history = useHistory();
     const [color,newColor]=useState(false);
     const [clicked,newClicked]=useState(false);
@@ -20,13 +21,20 @@ const HomeWeather = () => {
         const changeColor=()=>{
             if(window.scrollY>=200){
                 newColor(true)
+
+                console.log(document.getElementById("VideoChange").removeAttribute("autoplay")) ;
+                console.log(document.getElementById("VideoChange").removeAttribute("loop")) ;
             }
             else{
                 newColor(false)
+                console.log(document.getElementById("VideoChange").setAttribute("autoplay",true)) ;
+                console.log(document.getElementById("VideoChange").setAttribute("loop",true)) ;
+
             }
-            }
-            window.addEventListener("scroll",changeColor);
         }
+        window.addEventListener("scroll",changeColor);
+        // console.log( refVideo)
+    }
         const fullScreen1=()=>{newClicked(true);}
         const fullScreen2=()=>{newClicked(false);}
         const reloading=()=>{window.location.reload();}
@@ -78,9 +86,9 @@ const HomeWeather = () => {
                         </div>
                     <div className={!color ? "backgroundCOLOR" : sortedData2.Values.videoOpacity}></div>
                     <div className="Fetched__Main">
-                        <video className={sortedData2.Values.Classname}  loop autoPlay muted>
-                            <source  src={sortedData2.Values.Video} type="video/mp4" ></source>
-                        </video>
+                            <video className={sortedData2.Values.Classname} autoPlay muted loop id="VideoChange" >
+                                <source  src={sortedData2.Values.Video} type="video/mp4" ></source>
+                            </video>
                     </div>
                         <div className="Fetched__Content">
 

@@ -138,8 +138,8 @@
 
 .header .input__icon input {
   width: 90%;
-  height: 3vh;
   border-radius: 5px;
+  height: 4vh;
   border: 1px solid white;
   padding-left: 10px;
   background-color: #109bc5;
@@ -147,6 +147,7 @@
 }
 
 .header .input__icon input:focus {
+  height: 30px;
   outline: none;
   color: white;
 }

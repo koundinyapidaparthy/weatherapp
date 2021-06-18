@@ -76,12 +76,13 @@
         @include flexing(row,space-around,center);
         input{
             width:90%;
-            height:3vh;
             border-radius: 5px;
+            height:4vh;
             border:1px solid white;
             padding-left: 10px;
             background-color:rgb(16, 155, 197);
             &:focus{
+                height:30px;
                 outline:none;
                 color:white;
             }

@@ -22,6 +22,7 @@ const Feedback = () => {
             console.log(result);
                 if(result.status===200){
                     alert("Thank You 😎");
+                    history.goBack();
                 }
             }, (error) => {
                 console.log(error.text);
@@ -50,13 +51,13 @@ const Feedback = () => {
                                 <span className="lefting">
                                     Any Bugs :
                                 </span>
-                                <input type="text" name="email" id="Email" />
+                                <input type="text" name="subject" id="Email" />
                             </label>
                         </div>
                         <div className="Feedback__form2">
                             <label>
                                 <span>Provide Feedback Here 👇</span> 
-                                <textarea  rows="4" cols="50" name="message"  id="Textare"  />
+                                <textarea  rows="4" cols="50" name="about"  id="Textare"  />
                             </label>
                             <input type="submit" name="email" id="sendFeedback" value="send feedback" />
                         </div>
