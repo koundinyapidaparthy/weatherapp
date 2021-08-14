@@ -25,7 +25,7 @@ const Feedback = () => {
                 }
             }, (error) => {
                 alert("Oops! Something Wrong 🥺");
-               console.log(error.text);
+               throw new Error(error.text);
             });
             e.target.reset();
         }
