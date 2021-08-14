@@ -19,14 +19,13 @@ const Feedback = () => {
         else{
             emailjs.sendForm('service_koundi', 'template_ywimchr', e.target, 'user_NoAYEf5NbxWcXTsa6fT5x')
             .then((result) => {
-            console.log(result);
                 if(result.status===200){
                     alert("Thank You 😎");
                     history.goBack();
                 }
             }, (error) => {
-                console.log(error.text);
-                alert("Oops! Something Wrong 🥺")
+                alert("Oops! Something Wrong 🥺");
+               console.log(error.text);
             });
             e.target.reset();
         }

@@ -6,8 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons';
 import "../../css/City/city.css";
 const City = () => {
-    var userName=useSelector(selectUserName);
-    var cityColor=useSelector(selectUserColor);
+    const cityData = {
+        forImg:localStorage.getItem("Img"),
+        forClass:localStorage.getItem("Class"),
+    }
+    var userName=useSelector(selectUserName) || localStorage.getItem("cityName");
+    var cityColor = useSelector(selectUserColor) || cityData;
     const history= useHistory();
     const [CityData,newCityData]=useState({
         loaded:false,
@@ -43,7 +47,8 @@ const City = () => {
             else{
             }
         })
-        .catch(err=>{
+            .catch(err => {
+            throw new Error(err);
         })
     },[userName]);
 
@@ -99,12 +104,12 @@ const City = () => {
                 <>
                         <div className="Loading">
                                     <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img"/>
-                                    {
+                                    {/* {
                                         userName ?
                                         <div className="Waiting">Failed To Fetch { userName}🤔</div>
                                         :
                                         <div className="Waiting">Failed To Fetch😌</div>
-                                    }
+                                    } */}
                         </div>
                 </>
             }

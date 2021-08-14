@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import "../../css/HomeWeather/homeweather.css"
 import useGeolocation from "./useGeolocation";
 import Hourly from "./Hourly";
@@ -11,55 +11,54 @@ import {useHistory} from "react-router-dom";
 import {setUserLoginDetails} from "../../user/userSlice";
 const HomeWeather = () => {
     const dispatch=useDispatch();
-    // const refVideo=useRef();
     const history = useHistory();
+    const ref=useRef(null);
     const [color,newColor]=useState(false);
     const [clicked,newClicked]=useState(false);
     const {userProvidedLoc,sortedData1,sortedData2,sortedData3, sortedData4,sortedData5}=useGeolocation();
     if( userProvidedLoc.loaded && sortedData1.loaded1  && sortedData2.loaded2 && sortedData3.loaded3 &&  sortedData4.loaded4 && sortedData5.loaded5){
-        // console.log({userProvidedLoc,sortedData1,sortedData2,sortedData3,sortedData4 ,sortedData5});
         const changeColor=()=>{
             if(window.scrollY>=200){
                 newColor(true)
-
-                console.log(document.getElementById("VideoChange").removeAttribute("autoplay")) ;
-                console.log(document.getElementById("VideoChange").removeAttribute("loop")) ;
             }
             else{
                 newColor(false)
-                console.log(document.getElementById("VideoChange").setAttribute("autoplay",true)) ;
-                console.log(document.getElementById("VideoChange").setAttribute("loop",true)) ;
-
             }
         }
-        window.addEventListener("scroll",changeColor);
-        // console.log( refVideo)
+        window.addEventListener("scroll", changeColor);
     }
-        const fullScreen1=()=>{newClicked(true);}
-        const fullScreen2=()=>{newClicked(false);}
-        const reloading=()=>{window.location.reload();}
-        const sendingData=(event)=>{
-            const cityName=document.getElementById("InputName").value.trim();
-            const regexpattern=/^[A-Za-z]+$/;
-                if(cityName===""){
-                    alert("Enter city name");
-                }
-                else if(!cityName.match(regexpattern)){
-                    alert("enter valid city name");
-                }
-                else{
-                    dispatch(
-                        setUserLoginDetails({
-                            name:cityName,
-                            color:sortedData2.Values.DispatchColor,
-                        })
-                    )
-                    history.push("/city");
-                }
+    const fullScreen1=()=>{newClicked(true);}
+    const fullScreen2=()=>{newClicked(false);}
+    const reloading=()=>{window.location.reload();}
+    const sendingData=(event)=>{
+        const cityName=document.getElementById("InputName").value.trim();
+        const regexpattern=/^[A-Za-z]+$/;
+            if(cityName===""){
+            }
+            else if(!cityName.match(regexpattern)){
+                alert("enter valid city name");
+            }
+            else{
+                dispatch(
+                    setUserLoginDetails({
+                        name:cityName,
+                        color:sortedData2.Values.DispatchColor,
+                    })
+                )
+                localStorage.setItem("cityName", cityName);
+                localStorage.setItem("Img", sortedData2.Values.DispatchColor.forImg);
+                localStorage.setItem("Class", sortedData2.Values.DispatchColor.forClass);
+                history.push("/city");
+            }
+    }
+    const gotoFeedback=()=>{
+        history.push("/feedback");
+    }
+    const EnterButtonClicked = (q) => {
+        if (q.keyCode === 13) {
+            sendingData();
         }
-        const gotoFeedback=()=>{
-            history.push("/feedback");
-        }
+    }
     return (
         <div className="Main">
             {
@@ -79,7 +78,7 @@ const HomeWeather = () => {
                         <div className={!color ? sortedData2.Values.headerClassname1 : sortedData2.Values.headerClassname2 }>
                             <FontAwesomeIcon icon={sortedData2.Values.icon} className="img" onClick={reloading} />
                             <div className="input__icon">
-                                <input type="text" placeholder="&#xF002;  City" id="InputName" />
+                                <input type="text" placeholder="&#xF002;  City" ref={ref} onKeyUp={EnterButtonClicked } id="InputName"  />
                                 <FontAwesomeIcon icon={faRocket} className="img" onClick={sendingData} />
                             </div>
                             <FontAwesomeIcon icon={faBars} className="img1" onClick={fullScreen1} />

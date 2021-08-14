@@ -36,7 +36,7 @@ const CustomHook = () => {
                         .then(async(data)=>{
                             const result =await data.json();
                             villageName(result);
-                        }).catch(e=>console.log(e));
+                        }).catch(e => { throw new Error(e) });
 
                     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=e9f96ca8486c3c3db229029a16c48211`)
                     .then(response => {
@@ -49,7 +49,7 @@ const CustomHook = () => {
                         FetchingHourly(data);
                         FetchingDaily(data);
                     })
-                    .catch(err=>console.log("Error"))
+                    .catch(e=>{ throw new Error(e) })
                 }
 
         };

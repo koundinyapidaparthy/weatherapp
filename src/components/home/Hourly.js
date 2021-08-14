@@ -54,7 +54,6 @@ const Hourly = (Data) => {
         }
         newArr.push(obj);
     }
-    // console.log(newArr);
     return (
         <>
 
