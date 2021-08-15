@@ -48,11 +48,11 @@ const HomeWeather = () => {
                 localStorage.setItem("cityName", cityName);
                 localStorage.setItem("Img", sortedData2.Values.DispatchColor.forImg);
                 localStorage.setItem("Class", sortedData2.Values.DispatchColor.forClass);
-                history.push("/city");
+                history.push("/weatherapp/city");
             }
     }
     const gotoFeedback=()=>{
-        history.push("/feedback");
+        history.push("/weatherapp/feedback");
     }
     const EnterButtonClicked = (q) => {
         if (q.keyCode === 13) {

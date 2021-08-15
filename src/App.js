@@ -9,10 +9,10 @@ function App() {
           <Route exact path="/weatherapp">
           <Home />
           </Route>
-          <Route  path="/city" >
+          <Route  path="/weatherapp/city" >
           <Cityname />
           </Route>
-          <Route  path="/feedback" >
+          <Route  path="/weatherapp/feedback" >
           <Feedback />
           </Route>
         </Switch>

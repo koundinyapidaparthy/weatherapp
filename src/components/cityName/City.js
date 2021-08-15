@@ -3,16 +3,21 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {selectUserName,selectUserColor} from "../../user/userSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft} from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import "../../css/City/city.css";
 const City = () => {
-    const cityData = {
+    const localCityData = {
         forImg:localStorage.getItem("Img"),
         forClass:localStorage.getItem("Class"),
     }
     var userName=useSelector(selectUserName) || localStorage.getItem("cityName");
-    var cityColor = useSelector(selectUserColor) || cityData;
-    const history= useHistory();
+    var cityColor = useSelector(selectUserColor) || localCityData;
+    const barColor = cityColor?.forImg === "iconColor" ? "primary" :
+        cityColor?.forImg === "iconColor1" ? "secondary" : "";
+    const history = useHistory();
+    const [dataLoading,setDataLoading] = useState(true);
     const [CityData,newCityData]=useState({
         loaded:false,
     })
@@ -42,9 +47,12 @@ const City = () => {
         .then(async(response) => {
             if(response.ok){
                 const data= await response.json();
+                setDataLoading(false);
                 FetchedData(data);
             }
-            else{
+            else {
+                setDataLoading(false);
+                newCityData({loaded:false});
             }
         })
             .catch(err => {
@@ -53,9 +61,14 @@ const City = () => {
     },[userName]);
 
     const pushingBack=()=>{
-        history.goBack();
+        history.push("/weatherapp");
     }
-    return (
+    return dataLoading ? <>
+        <div className="Loading">
+        <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img" />
+            <CircularProgress size={100} thickness={4} variant="indeterminate" color={barColor} style={barColor ? {}:{color: "black"}} />
+        </div>
+    </> :(
         <>
             {
                 CityData.loaded ? 
@@ -102,14 +115,9 @@ const City = () => {
                 </>
                 : 
                 <>
-                        <div className="Loading">
+                      <div className="Loading">
                                     <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img"/>
-                                    {/* {
-                                        userName ?
-                                        <div className="Waiting">Failed To Fetch { userName}🤔</div>
-                                        :
-                                        <div className="Waiting">Failed To Fetch😌</div>
-                                    } */}
+                                    <div className="Waiting">Failed To Fetch { userName}🤔</div>
                         </div>
                 </>
             }
