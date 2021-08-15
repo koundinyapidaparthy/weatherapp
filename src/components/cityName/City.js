@@ -16,7 +16,6 @@ const City = () => {
     var cityColor = useSelector(selectUserColor) || localCityData;
     const barColor = cityColor?.forImg === "iconColor" ? "primary" :
         cityColor?.forImg === "iconColor iconColor1" ? "secondary" : "";
-    console.log(barColor,cityColor);
     const history = useHistory();
     const [dataLoading,setDataLoading] = useState(true);
     const [CityData,newCityData]=useState({
