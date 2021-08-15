@@ -66,7 +66,7 @@ const City = () => {
     }
     return dataLoading ? <>
         <div className="Loading">
-        <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img" />
+            <FontAwesomeIcon icon={faChevronCircleLeft}  onClick={pushingBack} className="img" />
             <CircularProgress size={100} thickness={4} variant="indeterminate" color={barColor} style={barColor ? {}:{color: "black"}} />
         </div>
     </> :(
