@@ -3,13 +3,8 @@
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   overflow-x: scroll;
 }
 
@@ -22,37 +17,23 @@
   height: -moz-max-content;
   height: max-content;
   padding: 15px 20px 15px 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 5px;
   margin-right: 10px;
-  -webkit-box-shadow: 0;
-          box-shadow: 0;
-  -webkit-transition: all 1s ease-in-out;
+  box-shadow: 0;
   transition: all 1s ease-in-out;
 }
-
 .Inner__Hourly .Hourly__Hours {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
 }
-
 .Inner__Hourly .img {
   width: 25px;
   height: 25px;
-  -webkit-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 
@@ -60,8 +41,7 @@
   .Inner__Hourly:hover {
     background-color: white;
     color: black;
-    -webkit-box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.363);
-            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.363);
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.363);
     font-weight: bold;
   }
   .Inner__Hourly:hover .img {
@@ -81,5 +61,4 @@
   .addClassInHourly2:hover .img {
     color: white;
   }
-}
-/*# sourceMappingURL=hourly.css.map */
+}/*# sourceMappingURL=hourly.css.map */

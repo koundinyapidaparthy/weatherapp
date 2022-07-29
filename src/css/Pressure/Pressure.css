@@ -2,38 +2,24 @@
   margin-left: 20px;
   padding-bottom: 20px;
   margin-bottom: 40px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (calc(100%/6))[6];
-      grid-template-columns: repeat(6, calc(100%/6));
+  grid-template-columns: repeat(6, 16.6666666667%);
 }
-
 .Girdding__Content div {
   margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .Girdding__Content span {
   margin-top: 5px;
 }
-
 @media only screen and (max-width: 900px) {
   .Girdding__Content {
-    -ms-grid-columns: auto auto auto;
-        grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto;
   }
 }
-
 @media only screen and (max-width: 426px) {
   .Girdding__Content {
-    -ms-grid-columns: auto auto;
-        grid-template-columns: auto auto;
+    grid-template-columns: auto auto;
   }
-}
-/*# sourceMappingURL=Pressure.css.map */
+}/*# sourceMappingURL=Pressure.css.map */

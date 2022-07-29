@@ -5,7 +5,9 @@ import {selectUserName,selectUserColor} from "../../user/userSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Hot from "../../videos/Hot.mp4"
+import Bw from "../../videos/BW.mp4"
+import Cold from "../../videos/Cold.mp4"
 import "../../css/City/city.css";
 const City = () => {
     const localCityData = {
@@ -25,19 +27,33 @@ const City = () => {
         const myDate=new Date(Data.dt *1000);
         const month=myDate.toLocaleString('default', { month: 'short' });
         const today=myDate.getDate();
+        const currentTemp=Math.round(Data.main.temp);
+        let dependOnTemp={
+            
+        };
+        if(currentTemp>=30){
+            dependOnTemp={videoSource:Hot,cardBodyClass:"City__Name hotColor",cardHeaderClass:"iconColor iconColor1"};
+        }
+        else if(currentTemp>=25 && currentTemp<30){
+            dependOnTemp={videoSource:Bw,cardBodyClass:"City__Name",cardHeaderClass:"iconColor"};
+        }
+        else if(currentTemp<25){
+            dependOnTemp={videoSource:Cold,cardBodyClass:"City__Name coldColor",cardHeaderClass:"iconColor iconColor3"};
+        }
         const obj={
             loaded:true,
             month:month,
             today:today,
             City:Data.name,
             Country:Data.sys.country,
-            temp: Math.round(Data.main.temp),
+            temp: currentTemp,
             feels_like: Math.round(Data.main.feels_like),
             temp_min: Math.round(Data.main.temp_min),
             temp_max:Math.round(Data.main.temp_max) ,
             pressure: Data.main.pressure,
             humidity: Data.main.humidity,
-            wind_speed: Data.wind.speed
+            wind_speed: Data.wind.speed,
+            ...dependOnTemp
         };
         newCityData(obj);
     }
@@ -48,7 +64,7 @@ const City = () => {
             if(response.ok){
                 const data= await response.json();
                 setDataLoading(false);
-                FetchedData(data);
+                FetchedData({...data});
             }
             else {
                 setDataLoading(false);
@@ -74,7 +90,12 @@ const City = () => {
                 CityData.loaded ? 
                 <>
                     <div className="CITYCONTENT">
-                        <div className={cityColor.forImg}>
+                        <div className="Fetched__City_Main">
+                            <video autoPlay muted loop id="VideoChange" >
+                                <source  src={CityData.videoSource} type="video/mp4" ></source>
+                            </video>
+                    </div>
+                        <div className={CityData.cardHeaderClass ?? cityColor.forImg}>
                             <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="imgColor"/>
                             <div className="heading__Date">
                                 <span>{CityData.today}<sup>th</sup> {" "+CityData.month}</span>
@@ -84,7 +105,7 @@ const City = () => {
                                 <span>{CityData.Country}</span>
                             </div>
                         </div>
-                        <div className={cityColor.forClass}>
+                        <div className={CityData.cardBodyClass ?? cityColor.forClass}>
                             
                             <div>
                                 <span>Temperature:</span>
@@ -117,7 +138,7 @@ const City = () => {
                 <>
                       <div className="Loading">
                                     <FontAwesomeIcon icon={faChevronCircleLeft} onClick={pushingBack} className="img"/>
-                                    <div className="Waiting">Failed To Fetch { userName}🤔</div>
+                                    <div className="Waiting">Failed To Fetch { userName} 🤔</div>
                         </div>
                 </>
             }
